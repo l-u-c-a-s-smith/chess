@@ -5,18 +5,16 @@ Created on Tue Jul 11 14:07:21 2023
 @author: Lucas
 """
 print('chess game :) ')
-print('to get setarted, input "play()" !!!!')
+print('to get started, input "play()" !!!!')
 
 #contructing blank board
 
-dict={}
-for i in ['a','b','c','d','e','f','g','h']:
+def init_board():
+    board = {}
+    for i in ['a','b','c','d','e','f','g','h']:
     #for j in range(8):
-    dict[i]={'1':'_','2':'_','3':'_','4':'_','5':'_','6':'_','7':'_','8':'_'}
-
-board = dict
-
-def board_setter():
+        board[i]={'1':'_','2':'_','3':'_','4':'_','5':'_','6':'_','7':'_','8':'_'}
+    
     
     #capital name peices
     board['a']['1'] = 'R'
@@ -59,12 +57,42 @@ def board_setter():
     board['e']['7'] = 'p'
     
     return board
-board_setter()
+
+print("")
+
+def print_board(board):
+    print("  ", end= "")
+    for key in board.keys():
+        print(key, end = " ")
+    print()
     
+    
+    
+    for i,key in zip(range(len(board), 0,-1),board.keys()):
+        print(key, end = " ")
+        i = str(i)
+        #for j in range(len(board[i])):
+        print(board['a'][i], end = " ")
+        print(board['b'][i], end = " ")
+        print(board['c'][i], end = " ")
+        print(board['d'][i], end = " ")
+        print(board['e'][i], end = " ")
+        print(board['f'][i], end = " ")
+        print(board['g'][i], end = " ")
+        print(board['h'][i], end = " ")
+        print('')
+
+# board_setter()      
+# print_board(board)
+# print('')
+
+
 
 def play():
     print('Your are playing now :) capitals go first.')
-    
+    board = init_board()
+    print_board(board)
+    print('')
     game_cont = True
     
     while game_cont:
@@ -76,23 +104,35 @@ def play():
             letter2 = input('what is your final file/horizontal/letter? ')
             number2 = input('what is your final rank/vertical/number? ')
         
-
+            
             print(f"{board.get(letter1,{}).get(number1)} to {letter2 + number2}")
+            print('')
             
             #oppertunity to check case here so that peices cannot take same colour
             
-            if board.get(letter1,{}).get(number1) != '_':
+            if board.get(letter2,{}).get(number2) != '_':
                 print(f"{board.get(letter1,{}).get(number1)} takes {board.get(letter2,{}).get(number2)}!!!!!")
                 
             board[letter2][number2] = board[letter1][number1]
-            board[letter1][letter2] = '_'
+            board[letter1][number1] = '_'
+            print_board(board)
+            print('')
         if input1 == 2:
             input2 = int(input('enter "1" to resest the board, enter "2" to exit the game, enter "3" for manual square edit: '))
             
             if input2 == 1:
                 
-                board_setter()
+                dict={}
+                for i in ['a','b','c','d','e','f','g','h']:
+                #for j in range(8):
+                    dict[i]={'1':'_','2':'_','3':'_','4':'_','5':'_','6':'_','7':'_','8':'_'}
+                board = dict
+                
+                board = init_board()
+                print_board(board)
+                print('')
             if input2 == 2:
+                
                 game_cont = False
             if input2 == 3:
                 a = 0
@@ -102,6 +142,8 @@ def play():
                     maunual_pc = input('what piece are you changing this square to? "_" for an empty square: ')
                     
                     board[manual_let][manual_num] = maunual_pc
+                    print_board(board)
+                    print('')
                     
                     y_n = input('are there more manual square edits? y/n: ')
                     
@@ -110,6 +152,3 @@ def play():
                     
                     
         
-                
-        
-            
