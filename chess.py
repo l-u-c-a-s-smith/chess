@@ -61,30 +61,32 @@ def init_board():
 print("")
 
 def print_board(board):
-    print("  ", end= "")
+    
+    print("  ", end= "") 
     for key in board.keys():
         print(key, end = " ")
     print()
     
-    
-    
-    for i,key in zip(range(len(board), 0,-1),board.keys()):
-        print(key, end = " ")
+    for i in range(len(board), 0,-1):
+        print(i, end = " ")
         i = str(i)
         #for j in range(len(board[i])):
         print(board['a'][i], end = " ")
-        print(board['b'][i], end = " ")
-        print(board['c'][i], end = " ")
-        print(board['d'][i], end = " ")
-        print(board['e'][i], end = " ")
-        print(board['f'][i], end = " ")
-        print(board['g'][i], end = " ")
-        print(board['h'][i], end = " ")
-        print('')
+        print(board['b'][i] , end = " ")
+        print(board['c'][i] , end = " ")
+        print(board['d'][i] , end = " ")
+        print(board['e'][i] , end = " ")
+        print(board['f'][i] , end = " ")
+        print(board['g'][i] , end = " ")
+        print(board['h'][i] , end = " ")
+        print()
+        
+
 
 # board_setter()      
 # print_board(board)
 # print('')
+
 
 
 
